@@ -6,17 +6,15 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt'
   ],
 
+  ssr: false,
+
   devtools: {
     enabled: true
   },
 
   css: ['~/assets/css/main.css'],
 
-  routeRules: {
-    '/': { prerender: true }
-  },
-
-  compatibilityDate: '2025-01-15',
+  compatibilityDate: '2025-05-06',
 
   eslint: {
     config: {
@@ -24,6 +22,12 @@ export default defineNuxtConfig({
         commaDangle: 'never',
         braceStyle: '1tbs'
       }
+    }
+  },
+
+  icon: {
+    clientBundle: {
+      scan: true
     }
   },
 
