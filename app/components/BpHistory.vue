@@ -41,19 +41,38 @@ function handleDelete() {
     <template #header>
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-2">
-          <UIcon name="i-lucide-list" class="size-5 text-muted" />
-          <h2 class="font-semibold text-base">Historial</h2>
+          <UIcon
+            name="i-lucide-list"
+            class="size-5 text-muted"
+          />
+          <h2 class="font-semibold text-base">
+            Historial
+          </h2>
         </div>
-        <UBadge variant="subtle" color="neutral">{{ readings.length }} toma{{ readings.length !== 1 ? 's' : '' }}</UBadge>
+        <UBadge
+          variant="subtle"
+          color="neutral"
+        >
+          {{ readings.length }} toma{{ readings.length !== 1 ? 's' : '' }}
+        </UBadge>
       </div>
     </template>
 
-    <div v-if="readings.length === 0" class="py-10 text-center text-muted text-sm">
-      <UIcon name="i-lucide-clipboard-list" class="size-10 mb-2 mx-auto text-muted/40" />
+    <div
+      v-if="readings.length === 0"
+      class="py-10 text-center text-muted text-sm"
+    >
+      <UIcon
+        name="i-lucide-clipboard-list"
+        class="size-10 mb-2 mx-auto text-muted/40"
+      />
       <p>No hay tomas registradas todavía</p>
     </div>
 
-    <div v-else class="space-y-2">
+    <div
+      v-else
+      class="space-y-2"
+    >
       <div
         v-for="r in readings"
         :key="r.id"
@@ -75,8 +94,14 @@ function handleDelete() {
           </div>
           <div class="flex items-center gap-3 mt-1 text-xs text-muted">
             <span>{{ formatDate(r.timestamp) }}</span>
-            <span v-if="r.bpm" class="flex items-center gap-1">
-              <UIcon name="i-lucide-activity" class="size-3" />
+            <span
+              v-if="r.bpm"
+              class="flex items-center gap-1"
+            >
+              <UIcon
+                name="i-lucide-activity"
+                class="size-3"
+              />
               {{ r.bpm }} ppm
             </span>
           </div>
@@ -94,14 +119,31 @@ function handleDelete() {
     </div>
   </UCard>
 
-  <UModal v-model:open="showDeleteModal" title="Eliminar toma">
+  <UModal
+    v-model:open="showDeleteModal"
+    title="Eliminar toma"
+  >
     <template #body>
-      <p class="text-sm text-muted">¿Estás seguro de que querés eliminar esta toma? Esta acción no se puede deshacer.</p>
+      <p class="text-sm text-muted">
+        ¿Estás seguro de que querés eliminar esta toma? Esta acción no se puede deshacer.
+      </p>
     </template>
     <template #footer>
       <div class="flex justify-end gap-2">
-        <UButton color="neutral" variant="ghost" @click="confirmDeleteId = null">Cancelar</UButton>
-        <UButton color="error" icon="i-lucide-trash-2" @click="handleDelete">Eliminar</UButton>
+        <UButton
+          color="neutral"
+          variant="ghost"
+          @click="confirmDeleteId = null"
+        >
+          Cancelar
+        </UButton>
+        <UButton
+          color="error"
+          icon="i-lucide-trash-2"
+          @click="handleDelete"
+        >
+          Eliminar
+        </UButton>
       </div>
     </template>
   </UModal>

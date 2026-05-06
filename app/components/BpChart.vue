@@ -8,7 +8,8 @@ import {
   Title,
   Tooltip,
   Legend,
-  Filler
+  Filler,
+  type TooltipItem
 } from 'chart.js'
 import { Line } from 'vue-chartjs'
 import type { BpReading } from '~/types'
@@ -23,7 +24,7 @@ const colorMode = useColorMode()
 
 const chartData = computed(() => {
   const sorted = [...props.readings].sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime())
-  const labels = sorted.map(r => {
+  const labels = sorted.map((r) => {
     const d = new Date(r.timestamp)
     return d.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })
   })
@@ -80,7 +81,7 @@ const chartOptions = computed(() => {
       },
       tooltip: {
         callbacks: {
-          label: (ctx: any) => ` ${ctx.dataset.label}: ${ctx.parsed.y} mmHg`
+          label: (ctx: TooltipItem<'line'>) => ` ${ctx.dataset.label}: ${ctx.parsed.y} mmHg`
         }
       }
     },
@@ -104,16 +105,33 @@ const chartOptions = computed(() => {
   <UCard>
     <template #header>
       <div class="flex items-center gap-2">
-        <UIcon name="i-lucide-chart-line" class="text-primary size-5" />
-        <h2 class="font-semibold text-base">Evolución</h2>
+        <UIcon
+          name="i-lucide-chart-line"
+          class="text-primary size-5"
+        />
+        <h2 class="font-semibold text-base">
+          Evolución
+        </h2>
       </div>
     </template>
 
-    <div v-if="readings.length >= 2" class="h-72">
-      <Line :data="chartData" :options="chartOptions" />
+    <div
+      v-if="readings.length >= 2"
+      class="h-72"
+    >
+      <Line
+        :data="chartData"
+        :options="chartOptions"
+      />
     </div>
-    <div v-else class="h-40 flex flex-col items-center justify-center gap-2 text-muted text-sm">
-      <UIcon name="i-lucide-chart-line" class="size-8 opacity-30" />
+    <div
+      v-else
+      class="h-40 flex flex-col items-center justify-center gap-2 text-muted text-sm"
+    >
+      <UIcon
+        name="i-lucide-chart-line"
+        class="size-8 opacity-30"
+      />
       <p>Registrá al menos 2 tomas para ver el gráfico</p>
     </div>
   </UCard>

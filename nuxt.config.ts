@@ -18,6 +18,15 @@ export default defineNuxtConfig({
 
   compatibilityDate: '2025-01-15',
 
+  eslint: {
+    config: {
+      stylistic: {
+        commaDangle: 'never',
+        braceStyle: '1tbs'
+      }
+    }
+  },
+
   pwa: {
     registerType: 'autoUpdate',
     manifest: {
@@ -49,15 +58,6 @@ export default defineNuxtConfig({
       suppressWarnings: true,
       navigateFallbackAllowlist: [/^\/$/],
       type: 'module'
-    }
-  },
-
-  eslint: {
-    config: {
-      stylistic: {
-        commaDangle: 'never',
-        braceStyle: '1tbs'
-      }
     }
   }
 })

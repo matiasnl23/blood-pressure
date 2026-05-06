@@ -21,7 +21,10 @@ const latestCategory = computed(() =>
     <!-- Top bar -->
     <header class="flex items-center justify-between px-4 h-12 shrink-0 border-b border-default bg-background/80 backdrop-blur-sm">
       <div class="flex items-center gap-2">
-        <UIcon name="i-lucide-heart-pulse" class="text-red-500 size-4" />
+        <UIcon
+          name="i-lucide-heart-pulse"
+          class="text-red-500 size-4"
+        />
         <span class="font-semibold text-sm">Tensión Arterial</span>
       </div>
       <UColorModeButton size="sm" />
@@ -30,17 +33,24 @@ const latestCategory = computed(() =>
     <!-- Content area -->
     <main class="flex-1 overflow-y-auto">
       <!-- Tab: Toma -->
-      <div v-show="activeTab === 'toma'" class="p-4 space-y-4">
+      <div
+        v-show="activeTab === 'toma'"
+        class="p-4 space-y-4"
+      >
         <!-- Última toma -->
         <div v-if="latest">
           <div class="rounded-2xl border border-default bg-elevated p-5">
-            <p class="text-xs text-muted uppercase tracking-widest mb-3">Última toma</p>
+            <p class="text-xs text-muted uppercase tracking-widest mb-3">
+              Última toma
+            </p>
             <div class="flex items-end justify-between">
               <div>
                 <p class="text-5xl font-mono font-bold leading-none tracking-tight">
                   {{ latest.systolic }}<span class="text-2xl text-muted font-normal">/</span>{{ latest.diastolic }}
                 </p>
-                <p class="text-sm text-muted mt-1">mmHg<span v-if="latest.bpm"> · {{ latest.bpm }} ppm</span></p>
+                <p class="text-sm text-muted mt-1">
+                  mmHg<span v-if="latest.bpm"> · {{ latest.bpm }} ppm</span>
+                </p>
               </div>
               <div class="text-right">
                 <UBadge
@@ -65,12 +75,18 @@ const latestCategory = computed(() =>
       </div>
 
       <!-- Tab: Evolución -->
-      <div v-show="activeTab === 'evolucion'" class="p-4">
+      <div
+        v-show="activeTab === 'evolucion'"
+        class="p-4"
+      >
         <BpChart :readings="readings" />
       </div>
 
       <!-- Tab: Historial -->
-      <div v-show="activeTab === 'historial'" class="p-4">
+      <div
+        v-show="activeTab === 'historial'"
+        class="p-4"
+      >
         <BpHistory />
       </div>
     </main>
@@ -89,7 +105,10 @@ const latestCategory = computed(() =>
           : 'text-muted hover:text-default'"
         @click="activeTab = tab.key"
       >
-        <UIcon :name="tab.icon" class="size-5" />
+        <UIcon
+          :name="tab.icon"
+          class="size-5"
+        />
         <span class="text-[11px] font-medium">{{ tab.label }}</span>
       </button>
     </nav>

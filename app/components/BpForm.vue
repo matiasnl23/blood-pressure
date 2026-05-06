@@ -33,22 +33,33 @@ async function submit() {
 }
 
 const isValid = computed(() =>
-  form.systolic && form.diastolic &&
-  form.systolic > 0 && form.systolic < 300 &&
-  form.diastolic > 0 && form.diastolic < 200
+  form.systolic && form.diastolic
+  && form.systolic > 0 && form.systolic < 300
+  && form.diastolic > 0 && form.diastolic < 200
 )
 </script>
 
 <template>
   <div class="rounded-2xl border border-default bg-elevated p-5 space-y-4">
     <div class="flex items-center gap-2">
-      <UIcon name="i-lucide-plus-circle" class="text-primary size-5" />
-      <h2 class="font-semibold text-sm">Nueva toma</h2>
+      <UIcon
+        name="i-lucide-plus-circle"
+        class="text-primary size-5"
+      />
+      <h2 class="font-semibold text-sm">
+        Nueva toma
+      </h2>
     </div>
 
-    <form class="space-y-4" @submit.prevent="submit">
+    <form
+      class="space-y-4"
+      @submit.prevent="submit"
+    >
       <div class="grid grid-cols-2 gap-3">
-        <UFormField label="Sistólica (mmHg)" required>
+        <UFormField
+          label="Sistólica (mmHg)"
+          required
+        >
           <UInput
             v-model.number="form.systolic"
             type="number"
@@ -60,7 +71,10 @@ const isValid = computed(() =>
           />
         </UFormField>
 
-        <UFormField label="Diastólica (mmHg)" required>
+        <UFormField
+          label="Diastólica (mmHg)"
+          required
+        >
           <UInput
             v-model.number="form.diastolic"
             type="number"
@@ -73,7 +87,10 @@ const isValid = computed(() =>
         </UFormField>
       </div>
 
-      <UFormField label="Pulsaciones (ppm)" hint="Opcional">
+      <UFormField
+        label="Pulsaciones (ppm)"
+        hint="Opcional"
+      >
         <UInput
           v-model.number="form.bpm"
           type="number"
