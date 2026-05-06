@@ -9,7 +9,8 @@ import {
   Tooltip,
   Legend,
   Filler,
-  type TooltipItem
+  type TooltipItem,
+  type ChartOptions
 } from 'chart.js'
 import { Line } from 'vue-chartjs'
 import type { BpReading } from '~/types'
@@ -58,7 +59,7 @@ const chartData = computed(() => {
   }
 })
 
-const chartOptions = computed(() => {
+const chartOptions = computed<ChartOptions<'line'>>(() => {
   const isDark = colorMode.value === 'dark'
   const gridColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)'
   const textColor = isDark ? '#94a3b8' : '#64748b'
@@ -67,12 +68,12 @@ const chartOptions = computed(() => {
     responsive: true,
     maintainAspectRatio: false,
     interaction: {
-      mode: 'index' as const,
+      mode: 'index',
       intersect: false
     },
     plugins: {
       legend: {
-        position: 'top' as const,
+        position: 'top',
         labels: {
           color: textColor,
           usePointStyle: true,
@@ -91,7 +92,8 @@ const chartOptions = computed(() => {
         grid: { color: gridColor }
       },
       y: {
-        ticks: { color: textColor, callback: (v: number) => `${v}` },
+        type: 'linear',
+        ticks: { color: textColor, callback: (v: string | number) => `${v}` },
         grid: { color: gridColor },
         suggestedMin: 40,
         suggestedMax: 180

@@ -1,4 +1,3 @@
-import { useLocalStorage } from '@vueuse/core'
 import type { BpReading, BpCategory, BpCategoryInfo } from '~/types'
 
 export function useBpReadings() {
@@ -17,7 +16,7 @@ export function useBpReadings() {
   }
 
   function deleteReading(id: string) {
-    readings.value = readings.value.filter(r => r.id !== id)
+    readings.value = readings.value.filter((r: BpReading) => r.id !== id)
   }
 
   return { readings: sortedReadings, addReading, deleteReading }
