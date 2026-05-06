@@ -112,6 +112,7 @@ function handleDelete() {
           color="neutral"
           variant="ghost"
           size="sm"
+          class="shrink-0"
           aria-label="Eliminar toma"
           @click="confirmDelete(r.id)"
         />
