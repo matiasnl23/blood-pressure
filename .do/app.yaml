@@ -6,7 +6,7 @@ static_sites:
     github:
       branch: main
       deploy_on_push: false  # controlled by GitHub Actions
-      repo: GITHUB_USERNAME/blood-pressure
+      repo: matiasnl23/blood-pressure
     build_command: pnpm install --frozen-lockfile && pnpm generate
     output_dir: .output/public
     environment_slug: node-22
